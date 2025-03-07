@@ -11,7 +11,7 @@ from roboticstoolbox import *
 DFbot = DHRobot(
     [
         RevoluteDH(d=0.04145, alpha=np.pi / 2, qlim=np.array([-np.pi / 2, np.pi / 2])),
-        RevoluteDH(a=-0.08285, qlim=np.array([-np.pi / 2, np.pi / 2])),
+        RevoluteDH(a=-0.08285, qlim=np.array([-np.pi, 0])),
         RevoluteDH(a=-0.08285, qlim=np.array([-np.pi / 2, np.pi / 2])),
         RevoluteDH(alpha=-np.pi / 2, qlim=np.array([0, np.pi])),
         RevoluteDH(d=0.11, qlim=np.array([-np.pi / 2, np.pi])),
@@ -30,7 +30,9 @@ def convert_deg(deg):
 
 
 if __name__ == '__main__':
-    Arm = Arm_Device(com="COM9")
+    Arm = Arm_Device(com="COM13")
+    time.sleep(1)
+    Arm.Arm_serial_set_torque(1)
     time.sleep(1)
 
     state0 = [0, 0, 0, 0, 0]
